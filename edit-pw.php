@@ -16,7 +16,14 @@ include_once 'template/sidebar.php';
                     <h4 class="m-0 text-dark"><i class="fa fa-key ml-1 mr-1"></i>Ubah Password</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6 float-right">
-                    <a href="#" onClick="history.go(-1);" class="btn btn-sm bg-dark float-right"><i class="fa fa-arrow-left"> Kembali</i></a>
+                    <?php
+                    if ($_SESSION['level'] == 3) {
+                        $url = 'peserta/index';
+                    } else {
+                        $url = 'admin/index';
+                    }
+                    ?>
+                    <a href="<?= $url ?>" class="btn btn-sm bg-dark float-right"><i class="fa fa-arrow-left"> Kembali</i></a>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

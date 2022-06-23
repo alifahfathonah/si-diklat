@@ -414,13 +414,13 @@ if (isset($_POST['register'])) {
                             title: 'Register Akun Berhasil',
                             text:  'Sekarang anda Login Sebagai $usr',
                             type: 'success',
-                            timer: 2000,
+                            timer: 3000,
                             showConfirmButton: false
                         });     
                     },10);  
                     window.setTimeout(function(){ 
                         window.location.replace('peserta/');
-                    } ,2000);   
+                    } ,3000);   
                 </script>";
             } else {
                 echo "
