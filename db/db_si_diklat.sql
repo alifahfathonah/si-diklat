@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2022 at 12:35 PM
+-- Generation Time: Jun 23, 2022 at 12:41 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -201,6 +201,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `id_peserta`, `nm_user`, `username`, `password`, `level`) VALUES
 (1, NULL, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1'),
+(2, NULL, 'Kepala Balai', 'kabalai', '31ac85c0b4ec3a2d975be82d07834f69', '2'),
 (3, 4, 'Aimyon', 'aimyon', '83f6d8891c564d387e7598f8a2b65545', '3'),
 (4, 5, 'Curt Cobain', 'curt', '0d9ab6066a79ccddb295cbd1be995201', '3');
 
@@ -300,7 +301,7 @@ ALTER TABLE `tutor`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
