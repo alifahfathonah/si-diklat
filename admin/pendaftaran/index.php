@@ -48,7 +48,7 @@ include_once '../../template/sidebar.php';
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $data = $con->query("SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN peserta c ON a.id_peserta = c.id_peserta WHERE verif = 0 ORDER BY id_pendaftaran DESC");
+                                        $data = $con->query("SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN peserta c ON a.id_peserta = c.id_peserta WHERE verif = 0 ORDER BY id_pendaftaran ASC");
                                         while ($row = $data->fetch_array()) {
                                         ?>
                                             <tr>
