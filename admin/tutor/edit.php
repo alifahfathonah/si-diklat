@@ -7,6 +7,14 @@ include_once '../../template/sidebar.php';
 $id = $_GET['id'];
 $query = $con->query(" SELECT * FROM tutor WHERE id_tutor ='$id'");
 $row = $query->fetch_array();
+
+$pdd = [
+    '' => '-- Pilih --',
+    'SLTA' => 'SLTA',
+    'Sarjana' => 'Sarjana',
+    'Magister' => 'Magister',
+    'Doktor' => 'Doktor',
+];
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -41,6 +49,18 @@ $row = $query->fetch_array();
                                     <label class="col-sm-2 col-form-label">Nama Tutor</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="nm_tutor" value="<?= $row['nm_tutor'] ?>" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Pendidikan</label>
+                                    <div class="col-sm-10">
+                                        <?= form_dropdown('pendidikan', $pdd, $row['pendidikan'], 'class="form-control" required') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="jabatan" value="<?= $row['jabatan'] ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -87,12 +107,16 @@ include_once '../../template/footer.php';
 <?php
 if (isset($_POST['submit'])) {
     $nm_tutor = $_POST['nm_tutor'];
+    $pendidikan = $_POST['pendidikan'];
+    $jabatan = $_POST['jabatan'];
     $hp_tutor = $_POST['hp_tutor'];
     $email_tutor = $_POST['email_tutor'];
     $domisili = $_POST['domisili'];
 
     $update = $con->query("UPDATE tutor SET  
         nm_tutor = '$nm_tutor', 
+        pendidikan = '$pendidikan', 
+        jabatan = '$jabatan', 
         hp_tutor = '$hp_tutor', 
         email_tutor = '$email_tutor', 
         domisili = '$domisili'

@@ -120,12 +120,22 @@
                                                                                         } ?>">
                             <i class="nav-icon fa fa-file-signature"></i>
                             <p>
-                                Pendaftaran Diklat
+                                Data Pendaftaran Diklat
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/kehadiran/" class="nav-link <?php if ($page == 'kehadiran') {
+                                                                                            echo 'active';
+                                                                                        } ?>">
+                            <i class="nav-icon fa fa-user-check"></i>
+                            <p>
+                                Data Kehadiran Diklat
                             </p>
                         </a>
                     </li>
 
-                    <!-- <li class="nav-header">Laporan</li>
+                    <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-print"></i>
@@ -136,12 +146,22 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" target="_blank">
-                                    <p>- Atlet</p>
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_diklat">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_peserta">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Peserta Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kehadiran">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Kehadiran Peserta Diklat</p>
                                 </a>
                             </li>
                         </ul>
-                    </li> -->
+                    </li>
                 <?php } else if ($_SESSION['level'] == 2) { ?>
 
                     <li class="nav-item">
@@ -155,7 +175,7 @@
                         </a>
                     </li>
 
-                    <!-- <li class="nav-header">Laporan</li>
+                    <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-print"></i>
@@ -166,12 +186,22 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" data-toggle="modal" data-target="#lap_perolehan" class="nav-link">
-                                    <p>- Perolehan Medali</p>
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_diklat">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_peserta">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Peserta Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kehadiran">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Kehadiran Peserta Diklat</p>
                                 </a>
                             </li>
                         </ul>
-                    </li> -->
+                    </li>
                 <?php } else { ?>
                     <li class="nav-item">
                         <a href="<?= base_url() ?>/peserta/" class="nav-link <?php if ($page == 'dashboard') {
@@ -201,30 +231,39 @@
     <!-- /.sidebar -->
 </aside>
 
-<div class="modal fade" id="lap_perolehan" tabindex="-1">
+<div class="modal fade" id="lap_diklat" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Laporan Data Perolehan Medali</h4>
+                <h6 class="modal-title">Laporan Data Diklat</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
-                <form method="POST" target="_blank" action="<?= base_url('admin/medali/cetak') ?>">
+                <form method="POST" target="_blank" action="<?= base_url('admin/diklat/cetak') ?>">
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Dari Tanggal</label>
+                                <input type="date" class="form-control" name="tgl1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sampai Tanggal</label>
+                                <input type="date" class="form-control" name="tgl2">
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Pilih Tahun</label>
-                                <select class="form-control" name="tahun" required>
-                                    <option value=""> -- Pilih -- </option>
-                                    <?php
-                                    $mulai = date('Y');
-                                    for ($i = $mulai; $i < $mulai + 5; $i++) {
-                                        echo '<option value="' . $i . '">' . $i . '</option>';
-                                    }
-                                    ?>
+                                <label>Berdasarkan Materi</label>
+                                <select name="id_materi" class="form-control select2" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM materi ORDER BY id_materi DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_materi'] ?>"><?= $row['nm_materi'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                         </div>
@@ -242,62 +281,39 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="lap_cabang" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="lap_peserta" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Laporan Data Perolehan Medali Pecabang</h4>
+                <h6 class="modal-title">Laporan Data Peserta Diklat</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" target="_blank" action="<?= base_url('admin/medali/cetak-cabang') ?>">
+                <form method="POST" target="_blank" action="<?= base_url('admin/peserta/cetak') ?>">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>Pilih Tahun</label>
-                                <select class="form-control" id="thn" name="tahun" required>
-                                    <option value=""> -- Pilih -- </option>
-                                    <?php
-                                    $mulai = date('Y');
-                                    for ($i = $mulai; $i < $mulai + 5; $i++) {
-                                        echo '<option value="' . $i . '">' . $i . '</option>';
-                                    }
-                                    ?>
+                                <label>Berdasarkan Diklat</label>
+                                <select name="id_diklat" class="form-control select2" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM diklat ORDER BY tgl_mulai DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_diklat'] ?>"><?= $row['tema'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group" id="gjl" hidden>
-                                <label>Cabang Olahraga</label>
-                                <select class="form-control" name="cabang" required>
-                                    <option disabled selected> -- Pilih -- </option>
-                                    <option value="Atletik">Atletik</option>
-                                    <option value="Dayung">Dayung</option>
-                                    <option value="Gulat">Gulat</option>
-                                    <option value="Judo">Judo</option>
-                                    <option value="Karate">Karate</option>
-                                    <option value="Panahan">Panahan</option>
-                                    <option value="Renang">Renang</option>
-                                    <option value="Tae Kwon Do">Tae Kwon Do</option>
-                                    <option value="Tinju">Tinju</option>
-                                    <option value="Voli Pasir">Voli Pasir</option>
-                                    <option value="Kempo">Kempo</option>
-                                </select>
-                            </div>
-                            <div class="form-group" id="gnp" hidden>
-                                <label>Cabang Olahraga</label>
-                                <select class="form-control" name="cabang" required>
-                                    <option disabled selected> -- Pilih -- </option>
-                                    <option value="Sepak Bola">Sepak Bola</option>
-                                    <option value="Pencak Silat">Pencak Silat</option>
-                                    <option value="Bulutangkis">Bulutangkis</option>
-                                    <option value="Sepak Takraw">Sepak Takraw</option>
-                                    <option value="Tenis Lapangan">Tenis Lapangan</option>
-                                    <option value="Tenis Meja">Tenis Meja</option>
-                                    <option value="Voli Indoor">Voli Indoor</option>
-                                    <option value="Bola Basket">Bola Basket</option>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Berdasarkan Asal Instansi</label>
+                                <select name="id_instansi" class="form-control select2" style="width: 100%;">
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM instansi ORDER BY id_instansi DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_instansi'] ?>"><?= $row['nm_instansi'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                         </div>
@@ -314,31 +330,27 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-<div class="modal fade" id="lap_klasemen" tabindex="-1">
+<div class="modal fade" id="lap_kehadiran" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Laporan Data Klasemen Medali</h4>
+                <h6 class="modal-title">Laporan Data Kehadiran Peserta Diklat</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
-                <form method="POST" target="_blank" action="<?= base_url('admin/medali/cetak-klasemen') ?>">
+                <form method="POST" target="_blank" action="<?= base_url('admin/kehadiran/cetak') ?>">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Pilih Tahun</label>
-                                <select class="form-control" name="tahun" required>
-                                    <option value=""> -- Pilih -- </option>
-                                    <?php
-                                    $mulai = date('Y');
-                                    for ($i = $mulai; $i < $mulai + 5; $i++) {
-                                        echo '<option value="' . $i . '">' . $i . '</option>';
-                                    }
-                                    ?>
+                                <label>Berdasarkan Diklat</label>
+                                <select name="id_diklat" class="form-control select2" style="width: 100%;" required>
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM diklat ORDER BY tgl_mulai DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_diklat'] ?>"><?= $row['tema'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
                         </div>

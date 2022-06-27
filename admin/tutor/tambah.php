@@ -3,6 +3,14 @@ require '../../app/config.php';
 include_once '../../template/header.php';
 $page = 'tutor';
 include_once '../../template/sidebar.php';
+
+$pdd = [
+    '' => '-- Pilih --',
+    'SLTA' => 'SLTA',
+    'Sarjana' => 'Sarjana',
+    'Magister' => 'Magister',
+    'Doktor' => 'Doktor',
+];
 ?>
 
 
@@ -39,6 +47,18 @@ include_once '../../template/sidebar.php';
                                     <label class="col-sm-2 col-form-label">Nama Tutor</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="nm_tutor" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Pendidikan</label>
+                                    <div class="col-sm-10">
+                                        <?= form_dropdown('pendidikan', $pdd, '', 'class="form-control" required') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="jabatan" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -85,6 +105,8 @@ include_once '../../template/footer.php';
 <?php
 if (isset($_POST['submit'])) {
     $nm_tutor = $_POST['nm_tutor'];
+    $pendidikan = $_POST['pendidikan'];
+    $jabatan = $_POST['jabatan'];
     $hp_tutor = $_POST['hp_tutor'];
     $email_tutor = $_POST['email_tutor'];
     $domisili = $_POST['domisili'];
@@ -92,6 +114,8 @@ if (isset($_POST['submit'])) {
     $tambah = $con->query("INSERT INTO tutor VALUES (
         default, 
         '$nm_tutor',
+        '$pendidikan',
+        '$jabatan',
         '$hp_tutor',
         '$email_tutor',
         '$domisili'

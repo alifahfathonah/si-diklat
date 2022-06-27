@@ -207,6 +207,11 @@
                 $(this).remove();
             });
         }, 2000);
+        window.setTimeout(function() {
+            $("#notif2").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
     });
 </script>
 

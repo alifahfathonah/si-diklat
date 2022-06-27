@@ -18,9 +18,6 @@ if (mysqli_connect_errno()) {
                 <?php
                 $q = $con->query("SELECT * FROM peserta WHERE id_peserta = '$id' ");
                 $d = $q->fetch_array();
-                $tgl = new DateTime($d['tgl_lahir']);
-                $today = new DateTime('today');
-                $y = $today->diff($tgl)->y;
                 ?>
                 <div class="modal-body">
                     <div class="col-md-12">
@@ -49,8 +46,6 @@ if (mysqli_connect_errno()) {
                                     <dd class="col-sm-9">: <?= $d['tmpt_lahir'] ?></dd>
                                     <dt class="col-sm-3">Tanggal Lahir</dt>
                                     <dd class="col-sm-9">: <?= tgl($d['tgl_lahir']) ?></dd>
-                                    <dt class="col-sm-3">Usia</dt>
-                                    <dd class="col-sm-9">: <?= $y . ' Tahun' ?></dd>
                                     <dt class="col-sm-3">Jenis Kelamin</dt>
                                     <dd class="col-sm-9">: <?= $d['jk'] ?></dd>
                                     <dt class="col-sm-3">No HP</dt>
