@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2022 at 12:41 PM
+-- Generation Time: Jun 28, 2022 at 07:14 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -46,7 +46,8 @@ CREATE TABLE `diklat` (
 
 INSERT INTO `diklat` (`id_diklat`, `tema`, `id_materi`, `id_tutor`, `tgl_mulai`, `tgl_selesai`, `jam_mulai`, `id_ruangan`, `sts`) VALUES
 (2, 'Membangun Kepemimpian Leadership', 1, 2, '2022-06-25', '2022-06-26', '08:00', 2, '1'),
-(3, 'Membangun Tanggung Jawab dalam Tim', 2, 1, '2022-07-01', '2022-07-01', '10:00', 2, '1');
+(3, 'Membangun Tanggung Jawab dalam Tim', 2, 1, '2022-07-01', '2022-07-01', '10:00', 2, '1'),
+(4, 'Diklat contoh', 2, 1, '2022-06-24', '2022-06-24', '09:00', 2, '1');
 
 -- --------------------------------------------------------
 
@@ -69,6 +70,25 @@ CREATE TABLE `instansi` (
 INSERT INTO `instansi` (`id_instansi`, `nm_instansi`, `alamat`, `hp_instansi`, `email_instansi`) VALUES
 (1, 'SMAN 1 Banjarmasin', 'Jl. Mulawarman No.25, Tlk. Dalam, Kec. Banjarmasin Tengah, Kota Banjarmasin, Kalimantan Selatan 70115', '05114368225', 'sman1bjm@gmail.com'),
 (2, 'SMAN 2 Banjarmasin', 'Jl. Mulawarman No.21, Tlk. Dalam, Kec. Banjarmasin Tengah, Kota Banjarmasin, Kalimantan Selatan 70115', '05114368226', 'sman2bjm@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kehadiran`
+--
+
+CREATE TABLE `kehadiran` (
+  `id_kehadiran` int(11) NOT NULL,
+  `id_diklat` int(11) NOT NULL,
+  `id_peserta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kehadiran`
+--
+
+INSERT INTO `kehadiran` (`id_kehadiran`, `id_diklat`, `id_peserta`) VALUES
+(13, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -110,7 +130,9 @@ CREATE TABLE `pendaftaran` (
 
 INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_peserta`, `nomor`, `id_diklat`, `id_instansi`, `verif`) VALUES
 (2, 4, 'NPD0001', 2, 1, '1'),
-(4, 4, 'NPD0001', 3, 1, '1');
+(4, 4, 'NPD0001', 3, 1, '1'),
+(5, 6, 'NPD0001', 4, 2, '1'),
+(6, 4, 'NPD0002', 4, 2, '1');
 
 -- --------------------------------------------------------
 
@@ -137,7 +159,8 @@ CREATE TABLE `peserta` (
 
 INSERT INTO `peserta` (`id_peserta`, `nm_peserta`, `nip`, `tmpt_lahir`, `tgl_lahir`, `jk`, `hp_peserta`, `email_peserta`, `pendidikan`, `pas_foto`) VALUES
 (4, 'Aimyon', '131313', 'Banjarmasin', '2000-06-15', 'Perempuan', '081391701913', 'aimyon@gmail.com', 'Sarjana', '93624.jpg'),
-(5, 'Curt Cobain', '121212', 'London West', '1990-06-14', 'Laki-laki', '081391701910', 'curt@mail.com', 'SLTA', '78672.jpg');
+(5, 'Curt Cobain', '121212', 'London West', '1990-06-14', 'Laki-laki', '081391701910', 'curt@mail.com', 'SLTA', '78672.jpg'),
+(6, 'Rizal', '13333337', 'Banjarbaru', '1997-06-22', 'Laki-laki', '081391701913', 'rizaldev@gmail.com', 'Sarjana', '61753.jpg');
 
 -- --------------------------------------------------------
 
@@ -167,6 +190,8 @@ INSERT INTO `ruangan` (`id_ruangan`, `nm_ruangan`) VALUES
 CREATE TABLE `tutor` (
   `id_tutor` int(11) NOT NULL,
   `nm_tutor` varchar(50) NOT NULL,
+  `pendidikan` varchar(30) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
   `hp_tutor` varchar(20) NOT NULL,
   `email_tutor` varchar(50) NOT NULL,
   `domisili` varchar(50) NOT NULL
@@ -176,9 +201,10 @@ CREATE TABLE `tutor` (
 -- Dumping data for table `tutor`
 --
 
-INSERT INTO `tutor` (`id_tutor`, `nm_tutor`, `hp_tutor`, `email_tutor`, `domisili`) VALUES
-(1, 'Steve Jobs', '081278909090', 'steve@apple.com', 'Banjarmasin'),
-(2, 'Muhammad Hammidy', '085248176794', 'hammidy@gmail.com', 'Banjarbaru');
+INSERT INTO `tutor` (`id_tutor`, `nm_tutor`, `pendidikan`, `jabatan`, `hp_tutor`, `email_tutor`, `domisili`) VALUES
+(1, 'Steve Jobs', 'Sarjana', 'Bendahara', '081278909090', 'steve@apple.com', 'Banjarmasin'),
+(2, 'Muhammad Hammidy', 'Sarjana', 'Kadiv Kominfo', '085248176794', 'hammidy@gmail.com', 'Banjarbaru'),
+(3, 'Ayu', 'Sarjana', 'Sekdiv Kominfo', '085248176794', 'ayu@mail.com', 'Banjarmasin');
 
 -- --------------------------------------------------------
 
@@ -203,7 +229,8 @@ INSERT INTO `user` (`id_user`, `id_peserta`, `nm_user`, `username`, `password`, 
 (1, NULL, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1'),
 (2, NULL, 'Kepala Balai', 'kabalai', '31ac85c0b4ec3a2d975be82d07834f69', '2'),
 (3, 4, 'Aimyon', 'aimyon', '83f6d8891c564d387e7598f8a2b65545', '3'),
-(4, 5, 'Curt Cobain', 'curt', '0d9ab6066a79ccddb295cbd1be995201', '3');
+(4, 5, 'Curt Cobain', 'curt', '0d9ab6066a79ccddb295cbd1be995201', '3'),
+(6, 6, 'Rizal', 'rizal', '150fb021c56c33f82eef99253eb36ee1', '3');
 
 --
 -- Indexes for dumped tables
@@ -222,6 +249,14 @@ ALTER TABLE `instansi`
   ADD PRIMARY KEY (`id_instansi`);
 
 --
+-- Indexes for table `kehadiran`
+--
+ALTER TABLE `kehadiran`
+  ADD PRIMARY KEY (`id_kehadiran`),
+  ADD KEY `id_diklat` (`id_diklat`),
+  ADD KEY `id_peserta` (`id_peserta`);
+
+--
 -- Indexes for table `materi`
 --
 ALTER TABLE `materi`
@@ -231,7 +266,9 @@ ALTER TABLE `materi`
 -- Indexes for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  ADD PRIMARY KEY (`id_pendaftaran`);
+  ADD PRIMARY KEY (`id_pendaftaran`),
+  ADD KEY `id_peserta` (`id_peserta`),
+  ADD KEY `id_diklat` (`id_diklat`);
 
 --
 -- Indexes for table `peserta`
@@ -266,12 +303,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `diklat`
 --
 ALTER TABLE `diklat`
-  MODIFY `id_diklat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_diklat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `instansi`
 --
 ALTER TABLE `instansi`
   MODIFY `id_instansi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `kehadiran`
+--
+ALTER TABLE `kehadiran`
+  MODIFY `id_kehadiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `materi`
 --
@@ -281,12 +323,12 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `peserta`
 --
 ALTER TABLE `peserta`
-  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `ruangan`
 --
@@ -296,15 +338,29 @@ ALTER TABLE `ruangan`
 -- AUTO_INCREMENT for table `tutor`
 --
 ALTER TABLE `tutor`
-  MODIFY `id_tutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `kehadiran`
+--
+ALTER TABLE `kehadiran`
+  ADD CONSTRAINT `kehadiran_ibfk_1` FOREIGN KEY (`id_diklat`) REFERENCES `diklat` (`id_diklat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kehadiran_ibfk_2` FOREIGN KEY (`id_peserta`) REFERENCES `peserta` (`id_peserta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pendaftaran`
+--
+ALTER TABLE `pendaftaran`
+  ADD CONSTRAINT `pendaftaran_ibfk_1` FOREIGN KEY (`id_peserta`) REFERENCES `peserta` (`id_peserta`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pendaftaran_ibfk_2` FOREIGN KEY (`id_diklat`) REFERENCES `diklat` (`id_diklat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
