@@ -13,7 +13,7 @@ if (isset($_POST['cetak'])) {
     $cekid_materi = isset($id_materi);
     if ($tgl1 == $cektgl1 && $tgl2 == $cektgl2 && $id_materi == null) {
 
-        $sql = mysqli_query($con, "SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan WHERE a.tgl_mulai BETWEEN '$tgl1' AND '$tgl2' ORDER BY tgl_mulai DESC");
+        $sql = mysqli_query($con, "SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan WHERE a.tgl_mulai BETWEEN '$tgl1' AND '$tgl2' ORDER BY tgl_mulai ASC");
 
         $label = 'LAPORAN DATA DIKLAT <br> Tanggal : ' . tgl($tgl1) . ' s/d ' . tgl($tgl2);
     } else if ($tgl1 == null && $tgl2 == null && $id_materi == $cekid_materi) {
@@ -21,7 +21,7 @@ if (isset($_POST['cetak'])) {
         $dt = $con->query("SELECT * FROM materi WHERE id_materi = '$id_materi'")->fetch_array();
         $label = 'LAPORAN DATA DIKLAT <br> Materi : ' . $dt['nm_materi'];
     } else if ($tgl1 == $cektgl1 && $tgl2 == $cektgl2 && $id_materi == $cekid_materi) {
-        $sql = mysqli_query($con, "SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan WHERE a.tgl_mulai BETWEEN '$tgl1' AND '$tgl2' AND a.id_materi = '$id_materi' ORDER BY tgl_mulai DESC");
+        $sql = mysqli_query($con, "SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan WHERE a.tgl_mulai BETWEEN '$tgl1' AND '$tgl2' AND a.id_materi = '$id_materi' ORDER BY tgl_mulai ASC");
         $dt = $con->query("SELECT * FROM materi WHERE id_materi = '$id_materi'")->fetch_array();
         $label = 'LAPORAN DATA DIKLAT <br> Tanggal : ' . tgl($tgl1) . ' s/d ' . tgl($tgl2) . '<br> Materi : ' . $dt['nm_materi'];
     } else if ($tgl1 == null && $tgl2 == null && $id_materi == null) {
