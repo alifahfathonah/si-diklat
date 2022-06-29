@@ -16,26 +16,26 @@ if (isset($_POST['cetak'])) {
         $sql = mysqli_query($con, "SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN peserta c ON a.id_peserta = c.id_peserta JOIN instansi d ON a.id_instansi = d.id_instansi WHERE a.id_diklat = '$id_diklat' ORDER BY id_pendaftaran DESC ");
 
         $dt = $con->query("SELECT * FROM diklat WHERE id_diklat = '$id_diklat'")->fetch_array();
-        $label = 'LAPORAN DATA PESERTA DIKLAT <br> Tema Diklat : ' . $dt['tema'];
+        $label = 'LAPORAN PESERTA DIKLAT <br> Tema Diklat : ' . $dt['tema'];
     } else if ($id_diklat == null && $id_instansi == $cekid_instansi) {
 
         $sql = mysqli_query($con, "SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN peserta c ON a.id_peserta = c.id_peserta JOIN instansi d ON a.id_instansi = d.id_instansi WHERE a.id_instansi = '$id_instansi' ORDER BY id_pendaftaran DESC ");
 
         $dt = $con->query("SELECT * FROM instansi WHERE id_instansi = '$id_instansi'")->fetch_array();
-        $label = 'LAPORAN DATA PESERTA DIKLAT <br> Asal Instansi : ' . $dt['nm_instansi'];
+        $label = 'LAPORAN PESERTA DIKLAT <br> Asal Instansi : ' . $dt['nm_instansi'];
     } else if ($id_instansi == $cekid_instansi && $id_diklat == $cekid_diklat) {
 
         $sql = mysqli_query($con, "SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN peserta c ON a.id_peserta = c.id_peserta JOIN instansi d ON a.id_instansi = d.id_instansi WHERE a.id_instansi = '$id_instansi' AND a.id_diklat = '$id_diklat' ORDER BY id_pendaftaran DESC ");
 
         $dt1 = $con->query("SELECT * FROM diklat WHERE id_diklat = '$id_diklat'")->fetch_array();
         $dt2 = $con->query("SELECT * FROM instansi WHERE id_instansi = '$id_instansi'")->fetch_array();
-        $label = 'LAPORAN DATA PESERTA DIKLAT <br> Tema Diklat : ' . $dt1['tema'] . '<br> Asal Instansi :' . $dt2['nm_instansi'];
+        $label = 'LAPORAN PESERTA DIKLAT <br> Tema Diklat : ' . $dt1['tema'] . '<br> Asal Instansi :' . $dt2['nm_instansi'];
     } else if ($id_diklat == null && $id_instansi == null) {
 
         $sql = mysqli_query($con, "SELECT * FROM peserta ORDER BY id_peserta DESC");
 
         // $sql = mysqli_query($con, "SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN peserta c ON a.id_peserta = c.id_peserta JOIN instansi d ON a.id_instansi = d.id_instansi GROUP BY a.id_peserta ORDER BY id_pendaftaran DESC");
-        $label = 'LAPORAN DATA PESERTA DIKLAT';
+        $label = 'LAPORAN PESERTA DIKLAT';
     }
 }
 
@@ -52,7 +52,7 @@ ob_start();
 <html>
 
 <head>
-    <title>Laporan Data Peserta Diklat</title>
+    <title>Laporan Peserta Diklat</title>
 </head>
 
 <style>
@@ -142,7 +142,7 @@ ob_start();
                         <?= tgl_indo(date('Y-m-d')) ?><br>
                         Banjarmasin <br>
                         <br><br><br><br>
-                        <u>Pegawai</u><br>
+                        <u>Kepala Diklat</u><br>
                     </h6>
                 </td>
             </tr>

@@ -14,7 +14,7 @@ if (isset($_POST['cetak'])) {
         $sql = mysqli_query($con, "SELECT * FROM kehadiran a JOIN peserta b ON a.id_peserta = b.id_peserta WHERE a.id_diklat = '$id_diklat' ORDER BY id_kehadiran DESC ");
 
         $dt = $con->query("SELECT * FROM diklat WHERE id_diklat = '$id_diklat'")->fetch_array();
-        $label = 'LAPORAN DATA KEHADIRAN PESERTA DIKLAT <br> Tema Diklat : ' . $dt['tema'];
+        $label = 'LAPORAN KEHADIRAN PESERTA DIKLAT <br> Tema Diklat : ' . $dt['tema'];
     }
 }
 
@@ -31,7 +31,7 @@ ob_start();
 <html>
 
 <head>
-    <title>Laporan Data Kehadiran Peserta Diklat</title>
+    <title>Laporan Kehadiran Peserta Diklat</title>
 </head>
 
 <style>
@@ -111,7 +111,7 @@ ob_start();
                         <?= tgl_indo(date('Y-m-d')) ?><br>
                         Banjarmasin <br>
                         <br><br><br><br>
-                        <u>Pegawai</u><br>
+                        <u>Kepala Balai</u><br>
                     </h6>
                 </td>
             </tr>

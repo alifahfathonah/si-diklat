@@ -100,7 +100,7 @@ $d = $q->fetch_array();
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $data = $con->query("SELECT * FROM kehadiran a JOIN peserta b ON a.id_peserta = b.id_peserta  ORDER BY id_kehadiran DESC");
+                                        $data = $con->query("SELECT * FROM kehadiran a JOIN peserta b ON a.id_peserta = b.id_peserta WHERE id_diklat = '$id' ORDER BY id_kehadiran DESC");
                                         while ($row = $data->fetch_array()) {
                                         ?>
                                             <tr>
