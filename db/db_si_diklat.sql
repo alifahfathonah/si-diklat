@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 07:14 PM
+-- Generation Time: Jul 10, 2022 at 06:58 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_si_diklat`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `award`
+--
+
+CREATE TABLE `award` (
+  `id_award` int(11) NOT NULL,
+  `id_diklat` int(11) NOT NULL,
+  `id_peserta` int(11) NOT NULL,
+  `nm_award` varchar(50) NOT NULL,
+  `link` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `award`
+--
+
+INSERT INTO `award` (`id_award`, `id_diklat`, `id_peserta`, `nm_award`, `link`) VALUES
+(2, 4, 6, 'Peserta Paling Antusias', 'https://drive.google.com/file/d/1bzymzLPNYZS0dk8wsOiYE2pxbHV4Vzo7/view?usp=sharing');
 
 -- --------------------------------------------------------
 
@@ -45,7 +66,7 @@ CREATE TABLE `diklat` (
 --
 
 INSERT INTO `diklat` (`id_diklat`, `tema`, `id_materi`, `id_tutor`, `tgl_mulai`, `tgl_selesai`, `jam_mulai`, `id_ruangan`, `sts`) VALUES
-(2, 'Membangun Kepemimpian Leadership', 1, 2, '2022-06-25', '2022-06-26', '08:00', 2, '1'),
+(2, 'Membangun Kepemimpian Leadership', 1, 2, '2021-06-25', '2022-06-26', '08:00', 2, '1'),
 (3, 'Membangun Tanggung Jawab dalam Tim', 2, 1, '2022-07-01', '2022-07-01', '10:00', 2, '1'),
 (4, 'Diklat contoh', 2, 1, '2022-06-24', '2022-06-24', '09:00', 2, '1');
 
@@ -88,7 +109,9 @@ CREATE TABLE `kehadiran` (
 --
 
 INSERT INTO `kehadiran` (`id_kehadiran`, `id_diklat`, `id_peserta`) VALUES
-(13, 4, 6);
+(13, 4, 6),
+(14, 4, 4),
+(15, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -184,6 +207,27 @@ INSERT INTO `ruangan` (`id_ruangan`, `nm_ruangan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sertifikat`
+--
+
+CREATE TABLE `sertifikat` (
+  `id_sertifikat` int(11) NOT NULL,
+  `id_diklat` int(11) NOT NULL,
+  `id_peserta` int(11) NOT NULL,
+  `materi` text NOT NULL,
+  `sertifikat` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sertifikat`
+--
+
+INSERT INTO `sertifikat` (`id_sertifikat`, `id_diklat`, `id_peserta`, `materi`, `sertifikat`) VALUES
+(3, 4, 6, 'https://drive.google.com/file/d/1TYVrNLbFPK95fF_TrdRg4DPfB7vAxvt6/view?usp=sharing', 'https://drive.google.com/file/d/1nCAidMcWgTIr0Ql_MvJjALT5R7r00dqw/view?usp=sharing');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tutor`
 --
 
@@ -237,6 +281,14 @@ INSERT INTO `user` (`id_user`, `id_peserta`, `nm_user`, `username`, `password`, 
 --
 
 --
+-- Indexes for table `award`
+--
+ALTER TABLE `award`
+  ADD PRIMARY KEY (`id_award`),
+  ADD KEY `id_diklat` (`id_diklat`),
+  ADD KEY `id_peserta` (`id_peserta`);
+
+--
 -- Indexes for table `diklat`
 --
 ALTER TABLE `diklat`
@@ -283,6 +335,14 @@ ALTER TABLE `ruangan`
   ADD PRIMARY KEY (`id_ruangan`);
 
 --
+-- Indexes for table `sertifikat`
+--
+ALTER TABLE `sertifikat`
+  ADD PRIMARY KEY (`id_sertifikat`),
+  ADD KEY `id_diklat` (`id_diklat`),
+  ADD KEY `id_peserta` (`id_peserta`);
+
+--
 -- Indexes for table `tutor`
 --
 ALTER TABLE `tutor`
@@ -300,6 +360,11 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `award`
+--
+ALTER TABLE `award`
+  MODIFY `id_award` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `diklat`
 --
 ALTER TABLE `diklat`
@@ -313,7 +378,7 @@ ALTER TABLE `instansi`
 -- AUTO_INCREMENT for table `kehadiran`
 --
 ALTER TABLE `kehadiran`
-  MODIFY `id_kehadiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_kehadiran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `materi`
 --
@@ -335,6 +400,11 @@ ALTER TABLE `peserta`
 ALTER TABLE `ruangan`
   MODIFY `id_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `sertifikat`
+--
+ALTER TABLE `sertifikat`
+  MODIFY `id_sertifikat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `tutor`
 --
 ALTER TABLE `tutor`
@@ -349,6 +419,13 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `award`
+--
+ALTER TABLE `award`
+  ADD CONSTRAINT `award_ibfk_1` FOREIGN KEY (`id_diklat`) REFERENCES `diklat` (`id_diklat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `award_ibfk_2` FOREIGN KEY (`id_peserta`) REFERENCES `peserta` (`id_peserta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `kehadiran`
 --
 ALTER TABLE `kehadiran`
@@ -361,6 +438,13 @@ ALTER TABLE `kehadiran`
 ALTER TABLE `pendaftaran`
   ADD CONSTRAINT `pendaftaran_ibfk_1` FOREIGN KEY (`id_peserta`) REFERENCES `peserta` (`id_peserta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pendaftaran_ibfk_2` FOREIGN KEY (`id_diklat`) REFERENCES `diklat` (`id_diklat`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sertifikat`
+--
+ALTER TABLE `sertifikat`
+  ADD CONSTRAINT `sertifikat_ibfk_1` FOREIGN KEY (`id_diklat`) REFERENCES `diklat` (`id_diklat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sertifikat_ibfk_2` FOREIGN KEY (`id_peserta`) REFERENCES `peserta` (`id_peserta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
