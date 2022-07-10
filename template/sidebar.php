@@ -253,6 +253,16 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/peserta/award/" class="nav-link <?php if ($page == 'award') {
+                                                                                        echo 'active';
+                                                                                    } ?>">
+                            <i class="nav-icon fa fa-award"></i>
+                            <p>
+                                Data Penghargaan Diklat
+                            </p>
+                        </a>
+                    </li>
                 <?php } ?>
             </ul>
         </nav>

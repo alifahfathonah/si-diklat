@@ -10,6 +10,7 @@ $a1 = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE id_peserta = 
 $a2 = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE verif = 1 AND id_peserta = '$user'")->fetch_array();
 $a3 = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE verif = 0 AND id_peserta = '$user'")->fetch_array();
 $b = $con->query("SELECT COUNT(*) AS total FROM sertifikat WHERE id_peserta = '$user' ")->fetch_array();
+$c = $con->query("SELECT COUNT(*) AS total FROM award WHERE id_peserta = '$user' ")->fetch_array();
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -43,7 +44,18 @@ $b = $con->query("SELECT COUNT(*) AS total FROM sertifikat WHERE id_peserta = '$
 
                         <div class="info-box-content">
                             <span class="info-box-text">Data Sertifikat Diklat</span>
-                            <span class="info-box-number"><?= $b['total'] ?> Total Data</span>
+                            <span class="info-box-number"><?= $b['total'] ?> Data</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="info-box mb-12 bg-olive">
+                        <span class="info-box-icon"><i class="fas fa-award"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Data Penghargaan Diklat</span>
+                            <span class="info-box-number"><?= $c['total'] ?> Data</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

@@ -139,7 +139,7 @@ include_once '../../template/footer.php';
 if (isset($_POST['absen'])) {
     $id_peserta = $_POST['id_peserta'];
 
-    $query = $con->query("SELECT id_peserta FROM kehadiran WHERE id_peserta = '$id_peserta'");
+    $query = $con->query("SELECT id_peserta, id_diklat FROM kehadiran WHERE id_peserta = '$id_peserta' AND id_diklat = '$id' ");
 
     if ($query->num_rows > 0) {
         $_SESSION['gagal'] = "Peserta Sudah melakukan Absensi";

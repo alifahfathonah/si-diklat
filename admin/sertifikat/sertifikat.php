@@ -158,7 +158,7 @@ if (isset($_POST['absen'])) {
     $materi = $_POST['materi'];
     $sertifikat = $_POST['sertifikat'];
 
-    $query = $con->query("SELECT id_peserta FROM sertifikat WHERE id_peserta = '$id_peserta'");
+    $query = $con->query("SELECT id_peserta, id_diklat FROM sertifikat WHERE id_peserta = '$id_peserta' AND id_diklat = '$id' ");
 
     if ($query->num_rows > 0) {
         $_SESSION['gagal'] = "Peserta Sudah mendapatkan Sertifikat";
