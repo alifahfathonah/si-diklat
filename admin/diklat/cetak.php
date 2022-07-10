@@ -28,6 +28,14 @@ if (isset($_POST['cetak'])) {
         $sql = mysqli_query($con, "SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan ORDER BY tgl_mulai DESC");
         $label = 'LAPORAN DIKLAT';
     }
+} else if (isset($_POST['cetak2'])) {
+    $tahun = $_POST['tahun'];
+    $cektahun = isset($tahun);
+
+    if ($tahun == $cektahun) {
+        $sql = mysqli_query($con, "SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan WHERE YEAR(a.tgl_mulai) = '$tahun' ORDER BY tgl_mulai ASC");
+        $label = 'LAPORAN DIKLAT <br> Tahun : ' . $tahun;
+    }
 }
 
 require_once '../../assets/vendor/autoload.php';

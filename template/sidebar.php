@@ -134,6 +134,26 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/sertifikat/" class="nav-link <?php if ($page == 'sertifikat') {
+                                                                                            echo 'active';
+                                                                                        } ?>">
+                            <i class="nav-icon fa fa-pager"></i>
+                            <p>
+                                Data Sertifikat Diklat
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/award/" class="nav-link <?php if ($page == 'award') {
+                                                                                        echo 'active';
+                                                                                    } ?>">
+                            <i class="nav-icon fa fa-award"></i>
+                            <p>
+                                Data Penghargaan Diklat
+                            </p>
+                        </a>
+                    </li>
 
                     <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
@@ -220,6 +240,16 @@
                             <i class="nav-icon fa fa-file-signature"></i>
                             <p>
                                 Pendaftaran Diklat
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/peserta/sertifikat/" class="nav-link <?php if ($page == 'sertifikat') {
+                                                                                            echo 'active';
+                                                                                        } ?>">
+                            <i class="nav-icon fa fa-pager"></i>
+                            <p>
+                                Data Sertifikat Diklat
                             </p>
                         </a>
                     </li>

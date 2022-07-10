@@ -1,7 +1,7 @@
 <?php
 require '../../app/config.php';
 include_once '../../template/header.php';
-$page = 'kehadiran';
+$page = 'sertifikat';
 include_once '../../template/sidebar.php';
 ?>
 
@@ -13,7 +13,7 @@ include_once '../../template/sidebar.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h4 class="m-0 text-dark"><i class="fa fa-user-check ml-1 mr-1"></i> Data Kehadiran Diklat</h4>
+                    <h4 class="m-0 text-dark"><i class="fa fa-pager ml-1 mr-1"></i> Data sertifikat Diklat</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6 text-right">
                     <!-- <a href="tambah" class="btn btn-sm bg-dark"><i class="fa fa-plus-circle"> Tambah Data</i></a> -->
@@ -44,8 +44,8 @@ include_once '../../template/sidebar.php';
                                         <tr align="center">
                                             <th>No</th>
                                             <th>Tema Diklat</th>
-                                            <th>Peserta Terdaftar</th>
                                             <th>Peserta Hadir</th>
+                                            <th>Sertifikat</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -61,18 +61,18 @@ include_once '../../template/sidebar.php';
                                                 <td><?= $row['tema'] ?></td>
                                                 <td align="center">
                                                     <?php
-                                                    $ttl = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE id_diklat = '$row[id_diklat]'")->fetch_array();
+                                                    $ttl = $con->query("SELECT COUNT(*) AS total FROM kehadiran WHERE id_diklat = '$row[id_diklat]'")->fetch_array();
                                                     echo $ttl['total'];
                                                     ?>
                                                 </td>
                                                 <td align="center">
                                                     <?php
-                                                    $ttl2 = $con->query("SELECT COUNT(*) AS total FROM kehadiran WHERE id_diklat = '$row[id_diklat]'")->fetch_array();
+                                                    $ttl2 = $con->query("SELECT COUNT(*) AS total FROM sertifikat WHERE id_diklat = '$row[id_diklat]'")->fetch_array();
                                                     echo $ttl2['total'];
                                                     ?>
                                                 </td>
                                                 <td align="center" width="15%">
-                                                    <a href="absensi?id=<?= $row[0] ?>" class="btn bg-primary btn-xs" title="Absensi"><i class="fa fa-plus-circle mr-1"></i> Data Kehadiran</a>
+                                                    <a href="sertifikat?id=<?= $row[0] ?>" class="btn bg-primary btn-xs" title="Sertifikat"><i class="fa fa-plus-circle mr-1"></i> Data sertifikat</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

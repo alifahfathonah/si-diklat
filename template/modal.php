@@ -36,8 +36,34 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group float-right">
-                            <button type="submit" name="cetak" class="btn btn-info"><i class="fa fa-print"> </i> Cetak</button>
+                        <div class="form-group">
+                            <button type="submit" name="cetak" class="btn btn-info btn-block"><i class="fa fa-print"> </i> Cetak</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <form method="POST" target="_blank" action="<?= base_url('admin/diklat/cetak') ?>">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Tahun</label>
+                                <select name="tahun" class="form-control" required>
+                                    <?php
+                                    $query = $con->query("SELECT tgl_mulai FROM diklat GROUP BY year(tgl_mulai)");
+                                    echo "<option value=''> -- Pilih Tahun -- </option>";
+                                    while ($row = $query->fetch_array()) {
+                                        $data = explode('-', $row['tgl_mulai']);
+                                        $tahun = $data[0];
+                                        echo "<option value='$tahun'>$tahun</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="submit" name="cetak2" class="btn btn-info btn-block"><i class="fa fa-print"> </i> Cetak</button>
                         </div>
                     </div>
                 </form>
