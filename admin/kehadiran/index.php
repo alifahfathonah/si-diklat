@@ -62,13 +62,13 @@ include_once '../../template/sidebar.php';
                                                 <td align="center">
                                                     <?php
                                                     $ttl = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE id_diklat = '$row[id_diklat]'")->fetch_array();
-                                                    echo $ttl['total'];
+                                                    echo $ttl['total'] . ' Orang';
                                                     ?>
                                                 </td>
                                                 <td align="center">
                                                     <?php
                                                     $ttl2 = $con->query("SELECT COUNT(*) AS total FROM kehadiran WHERE id_diklat = '$row[id_diklat]'")->fetch_array();
-                                                    echo $ttl2['total'];
+                                                    echo $ttl2['total'] . ' Orang';
                                                     ?>
                                                 </td>
                                                 <td align="center" width="15%">

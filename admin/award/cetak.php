@@ -3,18 +3,22 @@ include '../../app/config.php';
 
 $no = 1;
 
-if (isset($_POST['cetak'])) {
+// if (isset($_POST['cetak'])) {
 
-    $id_diklat = $_POST['id_diklat'];
-    $cekid_diklat = isset($id_diklat);
-    if ($id_diklat == $cekid_diklat) {
+//     $id_diklat = $_POST['id_diklat'];
+//     $cekid_diklat = isset($id_diklat);
+//     if ($id_diklat == $cekid_diklat) {
 
-        $sql = mysqli_query($con, "SELECT * FROM sertifikat a JOIN peserta b ON a.id_peserta = b.id_peserta WHERE a.id_diklat = '$id_diklat' ORDER BY id_sertifikat DESC ");
+//         $sql = mysqli_query($con, "SELECT * FROM award a JOIN peserta b ON a.id_peserta = b.id_peserta WHERE a.id_diklat = '$id_diklat' ORDER BY id_award DESC ");
 
-        $dt = $con->query("SELECT * FROM diklat WHERE id_diklat = '$id_diklat'")->fetch_array();
-        $label = 'LAPORAN PENERIMA SERTIFIKAT DIKLAT <br> Tema Diklat : ' . $dt['tema'];
-    }
-}
+//         $dt = $con->query("SELECT * FROM diklat WHERE id_diklat = '$id_diklat'")->fetch_array();
+//         $label = 'LAPORAN PENERIMA PENGHARGAAN DIKLAT <br> Tema Diklat : ' . $dt['tema'];
+//     }
+// }
+
+$sql = mysqli_query($con, "SELECT * FROM award a JOIN peserta b ON a.id_peserta = b.id_peserta ORDER BY id_award DESC ");
+
+$label = 'LAPORAN PENERIMA PENGHARGAAN DIKLAT';
 
 require_once '../../assets/vendor/autoload.php';
 $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L']);
@@ -29,7 +33,7 @@ ob_start();
 <html>
 
 <head>
-    <title>Laporan Penerima Sertifikat Diklat</title>
+    <title>Laporan Penerima Penghargaan Diklat</title>
 </head>
 
 <style>
@@ -68,6 +72,7 @@ ob_start();
                     <thead>
                         <tr bgcolor="#007BFF" align="center">
                             <th>No</th>
+                            <th>Penghargaan</th>
                             <th>Nama Peserta</th>
                             <th>NIP</th>
                             <th>Pendidikan</th>
@@ -79,6 +84,7 @@ ob_start();
                         <?php while ($data = mysqli_fetch_array($sql)) { ?>
                             <tr>
                                 <td align="center" width="5%"><?= $no++; ?></td>
+                                <td><?= $data['nm_award'] ?></td>
                                 <td><?= $data['nm_peserta'] ?></td>
                                 <td align="center"><?= $data['nip'] ?></td>
                                 <td align="center"><?= $data['pendidikan'] ?></td>

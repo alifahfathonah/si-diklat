@@ -180,6 +180,26 @@
                                     <p><i class="fa fa-file-alt mr-1"></i> Kehadiran Peserta Diklat</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_sertifikat">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Penerima Sertifikat</p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_award">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Penerima Penghargaan</p>
+                                </a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/award/cetak" class="nav-link" target="_BLANK">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Penerima Penghargaan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/diklat/rekap" class="nav-link" target="_BLANK">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Rekapitulasi Diklat</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 <?php } else if ($_SESSION['level'] == 2) { ?>

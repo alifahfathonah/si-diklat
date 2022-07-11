@@ -160,3 +160,77 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div class="modal fade" id="lap_sertifikat" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Laporan Data Penerima Sertifikat</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" target="_blank" action="<?= base_url('admin/sertifikat/cetak') ?>">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Berdasarkan Diklat</label>
+                                <select name="id_diklat" class="form-control select2" style="width: 100%;" required>
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM diklat ORDER BY tgl_mulai DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_diklat'] ?>"><?= $row['tema'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group float-right">
+                            <button type="submit" name="cetak" class="btn btn-info"><i class="fa fa-print"> </i> Cetak</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="lap_award" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Laporan Data Penerima Penghargaan</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" target="_blank" action="<?= base_url('admin/award/cetak') ?>">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Berdasarkan Diklat</label>
+                                <select name="id_diklat" class="form-control select2" style="width: 100%;" required>
+                                    <option value="">-- Pilih --</option>
+                                    <?php $data = $con->query("SELECT * FROM diklat ORDER BY tgl_mulai DESC"); ?>
+                                    <?php foreach ($data as $row) : ?>
+                                        <option value="<?= $row['id_diklat'] ?>"><?= $row['tema'] ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group float-right">
+                            <button type="submit" name="cetak" class="btn btn-info"><i class="fa fa-print"> </i> Cetak</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

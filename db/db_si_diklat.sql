@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 06:58 PM
+-- Generation Time: Jul 11, 2022 at 05:47 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -66,7 +66,7 @@ CREATE TABLE `diklat` (
 --
 
 INSERT INTO `diklat` (`id_diklat`, `tema`, `id_materi`, `id_tutor`, `tgl_mulai`, `tgl_selesai`, `jam_mulai`, `id_ruangan`, `sts`) VALUES
-(2, 'Membangun Kepemimpian Leadership', 1, 2, '2021-06-25', '2022-06-26', '08:00', 2, '1'),
+(2, 'Membangun Kepemimpian Leadership', 1, 2, '2022-06-25', '2022-06-26', '08:00', 2, '1'),
 (3, 'Membangun Tanggung Jawab dalam Tim', 2, 1, '2022-07-01', '2022-07-01', '10:00', 2, '1'),
 (4, 'Diklat contoh', 2, 1, '2022-06-24', '2022-06-24', '09:00', 2, '1');
 
