@@ -114,46 +114,66 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="<?= base_url() ?>/admin/pendaftaran/" class="nav-link <?php if ($page == 'pendaftaran') {
-                                                                                            echo 'active';
-                                                                                        } ?>">
-                            <i class="nav-icon fa fa-file-signature"></i>
+                    <li class="nav-item has-treeview  <?php if (
+                                                            $page == 'pendaftaran' || $page == 'kehadiran' || $page == 'sertifikat' || $page == 'award'
+                                                        ) {
+                                                            echo 'menu-open';
+                                                        } ?>">
+                        <a href="#" class="nav-link <?php if (
+                                                        $page == 'pendaftaran' || $page == 'kehadiran' || $page == 'sertifikat' || $page == 'award'
+                                                    ) {
+                                                        echo 'active';
+                                                    } ?>">
+                            <i class="nav-icon fa fa-clipboard-list"></i>
                             <p>
-                                Data Pendaftaran Diklat
+                                Manajemen Diklat
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/pendaftaran/" class="nav-link <?php if ($page == 'pendaftaran') {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                    <i class="nav-icon fa fa-file-signature"></i>
+                                    <p>
+                                        Data Pendaftaran Diklat
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/kehadiran/" class="nav-link <?php if ($page == 'kehadiran') {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                    <i class="nav-icon fa fa-user-check"></i>
+                                    <p>
+                                        Data Kehadiran Diklat
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/sertifikat/" class="nav-link <?php if ($page == 'sertifikat') {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                    <i class="nav-icon fa fa-pager"></i>
+                                    <p>
+                                        Data Sertifikat Diklat
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/award/" class="nav-link <?php if ($page == 'award') {
+                                                                                                echo 'active';
+                                                                                            } ?>">
+                                    <i class="nav-icon fa fa-award"></i>
+                                    <p>
+                                        Data Penghargaan Diklat
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="<?= base_url() ?>/admin/kehadiran/" class="nav-link <?php if ($page == 'kehadiran') {
-                                                                                            echo 'active';
-                                                                                        } ?>">
-                            <i class="nav-icon fa fa-user-check"></i>
-                            <p>
-                                Data Kehadiran Diklat
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?= base_url() ?>/admin/sertifikat/" class="nav-link <?php if ($page == 'sertifikat') {
-                                                                                            echo 'active';
-                                                                                        } ?>">
-                            <i class="nav-icon fa fa-pager"></i>
-                            <p>
-                                Data Sertifikat Diklat
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?= base_url() ?>/admin/award/" class="nav-link <?php if ($page == 'award') {
-                                                                                        echo 'active';
-                                                                                    } ?>">
-                            <i class="nav-icon fa fa-award"></i>
-                            <p>
-                                Data Penghargaan Diklat
-                            </p>
-                        </a>
-                    </li>
+
 
                     <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
@@ -238,6 +258,26 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kehadiran">
                                     <p><i class="fa fa-file-alt mr-1"></i> Kehadiran Peserta Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_sertifikat">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Penerima Sertifikat</p>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_award">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Penerima Penghargaan</p>
+                                </a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/award/cetak" class="nav-link" target="_BLANK">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Penerima Penghargaan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/diklat/rekap" class="nav-link" target="_BLANK">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Rekapitulasi Diklat</p>
                                 </a>
                             </li>
                         </ul>
