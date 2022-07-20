@@ -191,6 +191,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_diklat_tahun">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Diklat Pertahun</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_peserta">
                                     <p><i class="fa fa-file-alt mr-1"></i> Peserta Diklat</p>
                                 </a>
@@ -218,6 +223,11 @@
                             <li class="nav-item">
                                 <a href="<?= base_url() ?>/admin/diklat/rekap" class="nav-link" target="_BLANK">
                                     <p><i class="fa fa-file-alt mr-1"></i> Rekapitulasi Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_grafik_diklat">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Grafik Peserta Diklat</p>
                                 </a>
                             </li>
                         </ul>
@@ -251,6 +261,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_diklat_tahun">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Diklat Pertahun</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_peserta">
                                     <p><i class="fa fa-file-alt mr-1"></i> Peserta Diklat</p>
                                 </a>
@@ -278,6 +293,11 @@
                             <li class="nav-item">
                                 <a href="<?= base_url() ?>/admin/diklat/rekap" class="nav-link" target="_BLANK">
                                     <p><i class="fa fa-file-alt mr-1"></i> Rekapitulasi Diklat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_grafik_diklat">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Grafik Peserta Diklat</p>
                                 </a>
                             </li>
                         </ul>

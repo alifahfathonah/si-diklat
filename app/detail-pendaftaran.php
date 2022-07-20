@@ -18,9 +18,6 @@ if (mysqli_connect_errno()) {
                 <?php
                 $q = $con->query("SELECT * FROM pendaftaran a JOIN diklat b ON a.id_diklat = b.id_diklat JOIN materi c ON b.id_materi = c.id_materi JOIN tutor d ON b.id_tutor = d.id_tutor JOIN ruangan e ON b.id_ruangan = e.id_ruangan JOIN instansi f ON a.id_instansi = f.id_instansi JOIN peserta g ON a.id_peserta = g.id_peserta WHERE id_pendaftaran = '$id' ");
                 $d = $q->fetch_array();
-                $tgl = new DateTime($d['tgl_lahir']);
-                $today = new DateTime('today');
-                $y = $today->diff($tgl)->y;
                 ?>
                 <div class="modal-body">
                     <div class="col-md-12">
@@ -45,8 +42,6 @@ if (mysqli_connect_errno()) {
                                     <dd class="col-sm-9">: <?= $d['tmpt_lahir'] ?></dd>
                                     <dt class="col-sm-3">Tanggal Lahir</dt>
                                     <dd class="col-sm-9">: <?= tgl($d['tgl_lahir']) ?></dd>
-                                    <dt class="col-sm-3">Usia</dt>
-                                    <dd class="col-sm-9">: <?= $y . ' Tahun' ?></dd>
                                     <dt class="col-sm-3">Jenis Kelamin</dt>
                                     <dd class="col-sm-9">: <?= $d['jk'] ?></dd>
                                     <dt class="col-sm-3">No HP</dt>

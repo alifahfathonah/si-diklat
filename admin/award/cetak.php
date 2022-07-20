@@ -47,7 +47,7 @@ ob_start();
         <table border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
                 <td align="center">
-                    <img src="<?= base_url('assets/images/logo.png') ?>" align="left" height="75">
+                    <img src="<?= base_url('assets/images/logo.png') ?>" align="left" height="100">
                 </td>
                 <td align="center">
                     <h4>PEMERINTAH PROVINSI KALIMANTAN SELATAN</h4>
@@ -55,7 +55,7 @@ ob_start();
                     <h6>Jl. Perdagangan No.106, Kuin Utara, Kec. Banjarmasin Utara, Kota Banjarmasin, Kalimantan Selatan 70124</h6>
                 </td>
                 <td align="center">
-                    <img src="<?= base_url('assets/images/pelengkap.png') ?>" align="right" height="75">
+                    <img src="<?= base_url('assets/images/pelengkap.png') ?>" align="right" height="100">
                 </td>
             </tr>
         </table>
